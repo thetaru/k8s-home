@@ -1,0 +1,8 @@
+---
+- hosts: kubernetes
+  become: yes
+  roles:
+  - role: linux_common
+    tags: linux_common
+  - role: kubernetes
+    tags: kubernetes

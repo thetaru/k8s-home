@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: minecraft-server
+  namespace: minecraft
+spec:
+  replicas: 4
+  serviceName: minecraft-server
+  selector:
+    matchLabels:
+      app: minecraft
+  template:
+    metadata:
+      labels:
+        app: minecraft
+    spec:
+      dnsPolicy: "ClusterFirst"
+      dnsConfig:
+        nameservers:
+        - 8.8.8.8
+      containers:
+      - name: server
+        image: itzg/minecraft-server
+        command: ["/bin/sh", "-c"]
+        args:
+        - |
+          while [ ! -d /configs ]; do echo "Waiting for mount..."; sleep 3; done
+          cp -fpL /configs/eula.txt /data && cp -fpL /configs/server.properties /data && cp -fpL /configs/multipaper.yml /data
+          apt-get update && apt-get install curl -y
+          curl -o /data/multipaper-server.jar https://multipaper.io/api/v2/projects/multipaper/versions/1.19.2/builds/21/downloads/multipaper-1.19.2-21.jar
+          java -DbungeecordName="${HOSTNAME}.minecraft-server.minecraft.svc.cluster.local" -jar /data/multipaper-server.jar
+        env:
+        - name: EULA
+          value: "TRUE"
+        - name: LEVEL
+          value: "1.18.2"
+        - name: TZ
+          value: "Asia/Tokyo"
+        - name: SERVER_NAME
+          value: "minecraft.thetaru.home"
+        - name: MEMORY
+          value: "4G"
+        resources:
+          limits:
+            memory: "4Gi"
+            cpu: "1000m"
+        volumeMounts:
+        - name: minecraft-server-pvc
+          mountPath: "/data"
+        - name: minecraft-server-cm
+          mountPath: "/configs"
+      volumes:
+      - name: minecraft-server-cm
+        configMap:
+          name: minecraft-server-cm
+          items:
+          - key: "eula.txt"
+            path: "eula.txt"
+          - key: "server.properties"
+            path: "server.properties"
+          - key: "multipaper.yml"
+            path: "multipaper.yml"
+  volumeClaimTemplates:
+  - metadata:
+      name: minecraft-server-pvc
+    spec:
+      accessModes:
+      - ReadWriteMany
+      resources:
+        requests:
+          storage: 10Gi
+      storageClassName: rook-cephfs

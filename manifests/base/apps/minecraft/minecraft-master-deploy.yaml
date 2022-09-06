@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minecraft-master
+  namespace: minecraft
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minecraft
+  template:
+    metadata:
+      labels:
+        app: minecraft
+    spec:
+      dnsPolicy: "None"
+      dnsConfig:
+        nameservers:
+        - 8.8.8.8
+      containers:
+      - name: master
+        image: itzg/minecraft-server
+        command: ["/bin/sh", "-c"]
+        args:
+        - |
+          apt-get update && apt-get install curl -y
+          curl -o /data/multipaper-master.jar https://multipaper.io/api/v2/projects/multipaper/versions/1.19.2/builds/21/downloads/MultiPaper-Master-2.10.1-all.jar
+          java -jar /data/multipaper-master.jar 35353
+        env:
+        - name: EULA
+          value: "TRUE"
+        - name: LEVEL
+          value: "1.18.2"
+        - name: TZ
+          value: "Asia/Tokyo"
+        - name: SERVER_NAME
+          value: "minecraft.thetaru.home"
+        - name: MEMORY
+          value: "4G"
+        resources:
+          limits:
+            memory: "8Gi"
+            cpu: "2000m"
+        volumeMounts:
+        - name: minecraft-master-pvc
+          mountPath: "/data"
+      volumes:
+      - name: minecraft-master-pvc
+        persistentVolumeClaim:
+          claimName: minecraft-master-pvc

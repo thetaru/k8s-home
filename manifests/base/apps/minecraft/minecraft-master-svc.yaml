@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: minecraft-master
+  namespace: minecraft
+  labels:
+    app: minecraft
+spec:
+  ports:
+    - name: minecraft
+      protocol: TCP
+      port: 25565
+      targetPort: 25565
+    - name: multipaper-master
+      protocol: TCP
+      port: 35353
+      targetPort: 35353
+  selector:
+    app: minecraft
+  type: LoadBalancer
+  loadBalancerIP: 192.168.0.75
