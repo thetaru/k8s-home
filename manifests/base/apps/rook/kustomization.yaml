@@ -1,13 +1,13 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - https://raw.githubusercontent.com/rook/rook/v1.10.0/deploy/examples/crds.yaml
-  - https://raw.githubusercontent.com/rook/rook/v1.10.0/deploy/examples/common.yaml
-  - https://raw.githubusercontent.com/rook/rook/v1.10.0/deploy/examples/operator.yaml
-  - https://raw.githubusercontent.com/rook/rook/v1.10.0/deploy/examples/cluster.yaml
-  - https://raw.githubusercontent.com/rook/rook/v1.10.0/deploy/examples/filesystem.yaml
-  - https://raw.githubusercontent.com/rook/rook/v1.10.0/deploy/examples/csi/cephfs/storageclass.yaml
-  - https://raw.githubusercontent.com/rook/rook/v1.10.0/deploy/examples/dashboard-loadbalancer.yaml
+- https://raw.githubusercontent.com/rook/rook/v1.10.0/deploy/examples/crds.yaml
+- https://raw.githubusercontent.com/rook/rook/v1.10.0/deploy/examples/common.yaml
+- https://raw.githubusercontent.com/rook/rook/v1.10.0/deploy/examples/operator.yaml
+- https://raw.githubusercontent.com/rook/rook/v1.10.0/deploy/examples/cluster.yaml
+- https://raw.githubusercontent.com/rook/rook/v1.10.0/deploy/examples/filesystem.yaml
+- https://raw.githubusercontent.com/rook/rook/v1.10.0/deploy/examples/csi/cephfs/storageclass.yaml
+- https://raw.githubusercontent.com/rook/rook/v1.10.0/deploy/examples/dashboard-loadbalancer.yaml
 patchesStrategicMerge:
-  - ./patch-cluster.yaml
-  - ./patch-dashboard-loadbalancer.yaml
+- ./patch-cluster.yaml
+- ./patch-dashboard-loadbalancer.yaml
