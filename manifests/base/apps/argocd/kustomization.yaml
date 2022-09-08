@@ -4,5 +4,9 @@ namespace: argocd
 resources:
 - ./argocd-ns.yaml
 - https://raw.githubusercontent.com/argoproj/argo-cd/v2.4.11/manifests/ha/install.yaml
+- ./apps/minecraft.yaml
+- ./apps/argocd.yaml
+- ./apps/metallb.yaml
+- ./apps/rook.yaml
 patchesStrategicMerge:
 - ./patch-dashboard-loadbalancer.yaml
