@@ -21,10 +21,10 @@ spec:
         args:
         - |
           while [ ! -d /configs ]; do echo "Waiting for mount..."; sleep 3; done
-          cp -fpL /configs/eula.txt /data && cp -fpL /configs/server.properties /data && cp -fpL /configs/multipaper.yml /data
+          cp -fpL /configs/eula.txt /data && cp -fpL /configs/server.properties /data && cp -fpL /configs/multipaper.yml /data && cp -fpL /configs/bukkit.yml /data && cp -fpL /configs/spigot.yml /data
           apt-get update && apt-get install curl -y
           curl -o /data/multipaper-server.jar https://multipaper.io/api/v2/projects/multipaper/versions/1.19.2/builds/23/downloads/multipaper-1.19.2-23.jar
-          java -DbungeecordName="${HOSTNAME}.minecraft-server.minecraft.svc.cluster.local" -jar /data/multipaper-server.jar
+          java -Xmx6G -Xms4G -DbungeecordName="${HOSTNAME}.minecraft-server.minecraft.svc.cluster.local" -jar /data/multipaper-server.jar
         env:
         - name: EULA
           value: "TRUE"
@@ -56,6 +56,10 @@ spec:
             path: "server.properties"
           - key: "multipaper.yml"
             path: "multipaper.yml"
+          - key: "bukkit.yml"
+            path: "bukkit.yml"
+          - key: "spigot.yml"
+            path: "spigot.yml"
   volumeClaimTemplates:
   - metadata:
       name: minecraft-server-pvc
