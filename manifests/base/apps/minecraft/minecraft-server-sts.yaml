@@ -14,10 +14,6 @@ spec:
       labels:
         app: minecraft
     spec:
-      dnsPolicy: "ClusterFirst"
-      dnsConfig:
-        nameservers:
-        - 8.8.8.8
       containers:
       - name: server
         image: itzg/minecraft-server
@@ -39,11 +35,11 @@ spec:
         - name: SERVER_NAME
           value: "minecraft.thetaru.home"
         - name: MEMORY
-          value: "4G"
+          value: "6G"
         resources:
           limits:
-            memory: "4Gi"
-            cpu: "1000m"
+            memory: "6Gi"
+            cpu: "2000m"
         volumeMounts:
         - name: minecraft-server-pvc
           mountPath: "/data"
@@ -68,5 +64,5 @@ spec:
       - ReadWriteMany
       resources:
         requests:
-          storage: 10Gi
+          storage: 30Gi
       storageClassName: rook-cephfs

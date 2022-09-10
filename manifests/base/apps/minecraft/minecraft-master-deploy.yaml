@@ -13,10 +13,6 @@ spec:
       labels:
         app: minecraft
     spec:
-      dnsPolicy: "None"
-      dnsConfig:
-        nameservers:
-        - 8.8.8.8
       containers:
       - name: master
         image: itzg/minecraft-server
@@ -39,7 +35,7 @@ spec:
           value: "4G"
         resources:
           limits:
-            memory: "8Gi"
+            memory: "4Gi"
             cpu: "2000m"
         volumeMounts:
         - name: minecraft-master-pvc
