@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: minecraft
+  name: prometheus
   namespace: argocd
   finalizers:
-  - minecraft-finalizer.argocd.argoproj.io
+  - prometheus-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
     repoURL: 'https://github.com/thetaru/k8s-home.git'
-    path: manifests/base/apps/minecraft
+    path: manifests/base/apps/prometheus
     targetRevision: HEAD
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: minecraft
+    namespace: monitoring
   syncPolicy: {}
