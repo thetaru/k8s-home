@@ -21,8 +21,9 @@
   
 上記の仮想基盤サーバは、以下のストレージを共有ストレージとして利用します。
 - QNAP TS-453D
-  - 6TB (2TB HDD x 4 RAID5)
+  - 6TB (2TB HDD x 4 RAID5) for storage
 
-## Minecraft Server
+## Cluster Components
+### Minecraft
 マインクラフトサーバには、[MultiPaper](https://github.com/MultiPaper/MultiPaper)を利用しています。
 ![MultiPaper diagram](diagrams/multipaper-diagram.drawio.svg)

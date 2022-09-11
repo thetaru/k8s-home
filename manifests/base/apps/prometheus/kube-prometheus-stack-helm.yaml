@@ -40452,6 +40452,15 @@ spec:
     runAsGroup: 2000
     runAsNonRoot: true
     runAsUser: 1000
+  storage:
+    volumeClaimTemplate:
+      spec:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 50Gi
+        storageClassName: rook-cephfs
   portName: http-web
 ---
 # Source: kube-prometheus-stack/templates/prometheus-operator/admission-webhooks/mutatingWebhookConfiguration.yaml
@@ -40552,6 +40561,15 @@ spec:
     matchLabels:
       release: "kube-prometheus-stack"
 
+  storage:
+    volumeClaimTemplate:
+      spec:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 50Gi
+        storageClassName: rook-cephfs
   portName: http-web
 ---
 # Source: kube-prometheus-stack/templates/prometheus/rules-1.14/alertmanager.rules.yaml
