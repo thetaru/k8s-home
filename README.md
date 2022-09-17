@@ -23,7 +23,7 @@
 - QNAP TS-453D
   - 6TB (2TB HDD x 4 RAID5) for storage
 
-## Cluster Components
+## クラスタ構成
 ### Minecraft
 マインクラフトサーバには、[MultiPaper](https://github.com/MultiPaper/MultiPaper)を利用しています。
 ![MultiPaper diagram](diagrams/multipaper-diagram.drawio.svg)
