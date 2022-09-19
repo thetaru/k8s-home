@@ -20,7 +20,7 @@ spec:
         args:
         - |
           apt-get update && apt-get install curl -y
-          curl -o /data/multipaper-master.jar https://multipaper.io/api/v2/projects/multipaper/versions/1.19.2/builds/27/downloads/multipaper-1.19.2-27.jar
+          curl -o /data/multipaper-master.jar https://multipaper.io/api/v2/projects/multipaper/versions/1.19.2/builds/28/downloads/MultiPaper-Master-2.10.1-all.jar
           java -Xmx4G -Xms2G -jar /data/multipaper-master.jar 35353
         resources:
           limits:
