@@ -23,19 +23,8 @@ spec:
           while [ ! -d /configs ]; do echo "Waiting for mount..."; sleep 3; done
           cp -fpL /configs/eula.txt /data && cp -fpL /configs/server.properties /data && cp -fpL /configs/multipaper.yml /data && cp -fpL /configs/bukkit.yml /data && cp -fpL /configs/spigot.yml /data
           apt-get update && apt-get install curl -y
-          curl -o /data/multipaper-server.jar https://multipaper.io/api/v2/projects/multipaper/versions/1.19.2/builds/23/downloads/multipaper-1.19.2-23.jar
+          curl -o /data/multipaper-server.jar https://multipaper.io/api/v2/projects/multipaper/versions/1.19.2/builds/28/downloads/multipaper-1.19.2-28.jar
           java -Xmx6G -Xms4G -DbungeecordName="${HOSTNAME}.minecraft-server.minecraft.svc.cluster.local" -jar /data/multipaper-server.jar
-        env:
-        - name: EULA
-          value: "TRUE"
-        - name: LEVEL
-          value: "1.18.2"
-        - name: TZ
-          value: "Asia/Tokyo"
-        - name: SERVER_NAME
-          value: "minecraft.thetaru.home"
-        - name: MEMORY
-          value: "6G"
         resources:
           limits:
             memory: "6Gi"
