@@ -8,5 +8,6 @@ resources:
 - ./apps/prometheus.yaml
 - ./apps/rook.yaml
 - ./apps/flannel.yaml
+- ./apps/sealed-secrets.yaml
 patchesStrategicMerge:
 - ./patch-dashboard-loadbalancer.yaml
