@@ -23,7 +23,17 @@
 - QNAP TS-453D
   - 6TB (2TB HDD x 4 RAID5) for storage
 
-## クラスタ構成
+### Kubernetesクラスタ
+|Node|CPU|Memory|OS|Role|
+|:---|:---|:---|:---|:---|
+|k8s-m01|4 Cores|16GB|Ubuntu 22.04LTS|control-plane,master|
+|k8s-w01|4 Cores|16GB|Ubuntu 22.04LTS|worker|
+|k8s-w02|4 Cores|16GB|Ubuntu 22.04LTS|worker|
+|k8s-w03|4 Cores|16GB|Ubuntu 22.04LTS|worker|
+|k8s-w04|4 Cores|16GB|Ubuntu 22.04LTS|worker|
+|k8s-w05|4 Cores|16GB|Ubuntu 22.04LTS|worker|
+
+## サービス構成
 ### Minecraft
 マインクラフトサーバには、[MultiPaper](https://github.com/MultiPaper/MultiPaper)を利用しています。
 ![MultiPaper diagram](diagrams/multipaper-diagram.drawio.svg)
